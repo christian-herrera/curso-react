@@ -1,0 +1,17 @@
+html, body, #root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #ECEFF1;
+}
+
+.bg-home {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("./assets/bg1.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
+}
