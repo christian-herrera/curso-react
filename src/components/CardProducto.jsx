@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-export default function CardProducto({ producto }) {
+
+
+/**
+ * --------------------------------------------------------------
+ * ==> CardProducto.jsx - Componente de tarjeta de producto
+ * --------------------------------------------------------------
+ */
+export default function CardProducto({ producto , onAgregar_fn}) {
     const [imgLoading, setImgLoading] = useState(true);
 
     return (
@@ -33,7 +40,7 @@ export default function CardProducto({ producto }) {
                     <h5 className="card-title">{producto.title}</h5>
                     <p className="card-text">{producto.description}</p>
                     <p className="card-text fs-4">${producto.price.toFixed(2)}</p>
-                    <button className="btn btn-primary w-100">Agregar al carrito</button>
+                    <button className="btn btn-primary w-100" onClick={() => onAgregar_fn(producto)}>Agregar al carrito</button>
                 </div>
             </div>
         </div>
