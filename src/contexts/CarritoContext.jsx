@@ -22,7 +22,7 @@ export default function CarritoProvider({ children }) {
 
         let nuevoCarrito = [];
         if (exist) {
-            nuevoCarrito = carrito.map(item => {
+            nuevoCarrito = carrito.map(item => { // Por cada elemento del carrito...
                 if (item.id === producto.id) {
                     // El original era: { id: ..., name: ..., price: ..., quantity: prev}
                     // El nuevo será:   { id: ..., name: ..., price: ..., quantity: prev+1}

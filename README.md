@@ -4,7 +4,7 @@
 <br>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/christian-herrera/react)
-![Static Badge](https://img.shields.io/badge/version-v0.2.0-blue)
+![Static Badge](https://img.shields.io/badge/version-v0.2.1-blue)
 
 ![GitHub License](https://img.shields.io/github/license/christian-herrera/react?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/christian-herrera/react?style=for-the-badge)

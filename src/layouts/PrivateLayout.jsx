@@ -8,6 +8,7 @@ import { CarritoContext } from '../contexts/CarritoContext';
 
 // Imagenes
 import logo_icon from '../assets/logo_reduced.svg';
+import cartIcon from '../assets/icons/cart.svg';
 
 
 /**
@@ -59,25 +60,29 @@ export default function PrivateLayout() {
 
 
                             {/* Actualizar listado */}
-                            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-lg-2">
+                            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-lg-2 px-2">
                                 <li className="nav-item">
-                                    <Link to="/carrito" className="btn btn-outline-primary ms-auto mx-2 w-100">
-                                        Carrito ({carrito.length})
+                                    <Link to="/carrito" className="btn btn-outline-primary position-relative ms-auto w-100">
+                                        <img src={cartIcon} alt="Carrito" style={{ height: "20px" }} />
+                                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {carrito.length}
+                                            <span className="visually-hidden">unread messages</span>
+                                        </span>
                                     </Link>
                                 </li>
                             </ul>
 
                             {/* Ver productos */}
-                            <ul className="navbar-nav mb-2 mb-lg-0 me-lg-2">
+                            <ul className="navbar-nav mb-2 mb-lg-0 me-lg-2 px-2">
                                 <li className="nav-item">
-                                    <Link to="/dashboard" className="btn btn-outline-primary ms-auto mx-2 w-100">
+                                    <Link to="/dashboard" className="btn btn-outline-primary w-100">
                                         Ver Productos
                                     </Link>
                                 </li>
                             </ul>
 
                             {/* Cerrar sesión */}
-                            <ul className="navbar-nav mb-2 mb-lg-0 me-lg-3">
+                            <ul className="navbar-nav mb-2 mb-lg-0 me-lg-3 px-2">
                                 <li className="nav-item">
                                     <button className="btn btn-outline-primary w-100" type="button" onClick={handleLogout}>Cerrar Sesión</button>
                                 </li>

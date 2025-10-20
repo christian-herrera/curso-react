@@ -10,11 +10,11 @@ import AuthProvider from './contexts/AuthContext';
 import CarritoProvider from './contexts/CarritoContext';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <AuthProvider>
       <CarritoProvider>
         <AppRouter />
       </CarritoProvider>
     </AuthProvider>
-  </StrictMode>,
+  // </StrictMode>,
 )

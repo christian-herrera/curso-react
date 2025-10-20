@@ -14,10 +14,11 @@ import { CarritoContext } from '../../contexts/CarritoContext';
  * --------------------------------------------------------------
  */
 export default function Dashboard() {
-    const navigate = useNavigate();
+    
+
 
     // Contexto del Carrito
-    const { agregarAlCarrito } = useContext(CarritoContext);
+    const { carrito, agregarAlCarrito } = useContext(CarritoContext);
     
     // Adm. del listado de productos
     const [productos, setProductos] = useState([]);
@@ -57,7 +58,7 @@ export default function Dashboard() {
                 {!loading && (
                     <div className="row">
                         {productos.map((p) => (
-                            <CardProducto producto={p} onAgregar_fn={agregarAlCarrito} key={p.id}  />
+                            <CardProducto producto={p} onAgregar_fn={agregarAlCarrito} key={p.id} cantEnCarrito={carrito.filter(item => item.id === p.id)[0]?.quantity} />
                         ))}
                     </div>
                 )}
