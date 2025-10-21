@@ -13,7 +13,7 @@ import { CarritoContext } from '../../contexts/CarritoContext';
  * ==> Dashboard.jsx - Página del panel de control
  * --------------------------------------------------------------
  */
-export default function Dashboard() {
+export default function DashboardPage() {
     
 
 

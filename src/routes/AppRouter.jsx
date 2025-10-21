@@ -1,18 +1,13 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Componentes y Contextos
+// Layouts
 import PublicLayout from "../layouts/PublicLayout";
 import PrivateLayout from "../layouts/PrivateLayout";
 
-// Páginas
-import Login from "../pages/public/Login";
-import Home from "../pages/public/Home";
-import Dashboard from "../pages/private/Dashboard";
-import Carrito from "../pages/private/Carrito";
 
 // Errores
-import Error404 from "../pages/errors/Error404";
+import * as Pages from "../pages";
 
 
 
@@ -22,18 +17,18 @@ function AppRouter() {
       <Routes>
         {/* Rutas públicas */}
         <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Pages.HomePage />} />
+          <Route path="/login" element={<Pages.LoginPage />} />
         </Route>
 
         {/* Rutas privadas */}
         <Route element={<PrivateLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/carrito" element={<Carrito />} />
+          <Route path="/dashboard" element={<Pages.DashboardPage />} />
+          <Route path="/carrito" element={<Pages.CarritoPage />} />
         </Route>
 
         {/* 404 - Ruta desconocida */}
-        <Route path="*" element={<Error404 />} />
+        <Route path="*" element={<Pages.NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

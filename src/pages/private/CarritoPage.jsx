@@ -17,7 +17,7 @@ import trashIcon from '../../assets/icons/trash.svg';
  * ==> Carrito.jsx - Página del Carrito de Compras
  * ------------------------------------------------------------
  */
-export default function Carrito() {
+export default function CarritoPagePage() {
     const navigate = useNavigate();
 
     // Contexto del Carrito

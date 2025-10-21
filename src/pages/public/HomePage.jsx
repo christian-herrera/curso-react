@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
  * ==> Home.jsx - Página de inicio pública
  * --------------------------------------------------------------
  */
-export default function Home() {
+export default function HomePage() {
     const navigate = useNavigate();
 
     return (

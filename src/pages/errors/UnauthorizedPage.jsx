@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function Error401() {
+export default function UnauthorizedPage() {
     const [countdown, setCountdown] = useState(5);
 
     useEffect(() => {
