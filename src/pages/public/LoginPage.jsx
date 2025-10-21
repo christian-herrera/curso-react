@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 // Contextos
-import { AuthContext } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 /**
@@ -19,7 +19,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
 
     // Context de Autenticación
-    const { login } = useContext(AuthContext);
+    const { login } = useAuth();
 
     // Atiende el submit del formulario del login
     const handleSubmit = (e) => {

@@ -1,7 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 // Creo el contexto de autenticación
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+// Hook personalizado para usar el contexto. Se utiliza como: 
+// import { useAuth } from '...../AuthContext';
+// const { isAuth, user, login, logout } = useAuth();
+export const useAuth = () => useContext(AuthContext);
 
 
 /**
@@ -38,6 +43,9 @@ export default function AuthProvider({ children }) {
     setUser(null); // Limpia la prop
     sessionStorage.removeItem("user"); // Limpia el sessionStorage
   };
+
+
+
 
   // Proveo el contexto a los componentes hijos
   return (

@@ -1,8 +1,8 @@
-import { Outlet, Navigate, Link } from 'react-router-dom';
+import { Outlet, Navigate, Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 
 // Contextos
-import { AuthContext } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { CarritoContext } from '../contexts/CarritoContext';
 
 
@@ -17,13 +17,14 @@ import cartIcon from '../assets/icons/cart.svg';
  * --------------------------------------------------------------
  */
 export default function PrivateLayout() {
-    const { isAuth, user, logout } = useContext(AuthContext);
+    const { isAuth, user, logout } = useAuth();
     const { carrito } = useContext(CarritoContext);
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         if (confirm("¿Estás seguro de cerrar sesión?")) {
             logout();
-            return <Navigate to="/login" />;
+            navigate('/login', { replace: true });
         }
     };
 
@@ -96,6 +97,6 @@ export default function PrivateLayout() {
         );
     } else {
         {/* Retorna al login */ }
-        return <Navigate to="/login" />;
+        return <Navigate to="/login" replace />;
     }
 }
