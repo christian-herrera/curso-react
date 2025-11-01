@@ -26,3 +26,7 @@ dist-ssr
 
 # Vite
 .vite
+
+
+# Docker
+db_data
