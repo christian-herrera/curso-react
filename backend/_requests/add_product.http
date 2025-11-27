@@ -1,0 +1,41 @@
+# Login con Admin User
+# @name login
+POST http://localhost:9000/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "123456"
+}
+
+### ------------------------------------------------------
+# Agrego un nuevo producto
+@authToken = {{login.response.body.data.token}}
+POST http://localhost:30500/api/add-product HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryTest
+
+
+------WebKitFormBoundaryTest
+Content-Disposition: form-data; name="title"
+
+Nuevo producto
+------WebKitFormBoundaryTest
+Content-Disposition: form-data; name="subtitle"
+
+Breve descripcion
+------WebKitFormBoundaryTest
+Content-Disposition: form-data; name="description"
+
+Descripcion completa del producto
+------WebKitFormBoundaryTest
+Content-Disposition: form-data; name="price"
+
+1650
+------WebKitFormBoundaryTest
+Content-Disposition: form-data; name="image"; filename="img-test.jpg"
+Content-Type: image/png
+
+< ./img-test.jpg
+------WebKitFormBoundaryTest--
+

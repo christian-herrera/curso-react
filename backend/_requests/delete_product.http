@@ -1,0 +1,20 @@
+# Login con Admin User
+# @name login
+POST http://localhost:30500/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "123456"
+}
+
+### ------------------------------------------------------
+# Agrego un nuevo producto
+@authToken = {{login.response.body.data.token}}
+POST http://localhost:30500/api/delete-product HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "id": 22
+}

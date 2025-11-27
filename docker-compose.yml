@@ -1,0 +1,58 @@
+services:
+  # App con React
+  vite:
+    container_name: vite
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks: [default]
+    tty: true
+
+
+  # PHP-FPM para backend
+  php:
+    container_name: php
+    user: "1000:1000" # Ajustar con `id -u` y `id -g`
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    environment:
+      - PHP_OPCACHE_VALIDATE_TIMESTAMPS=1 # Recarga automática de archivos en desarrollo
+    networks: [default]
+    restart: unless-stopped
+  
+
+  # Nginx para servir la app + PHP
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 30500:80
+    volumes:
+      - ./backend:/app
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks: [default]
+    depends_on:
+      - php
+      - vite
+    restart: unless-stopped
+
+
+
+# Configuración de red personalizada
+networks:
+  default:
+    name: dev_curso
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+
+    
