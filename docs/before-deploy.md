@@ -24,17 +24,19 @@
 
 En este momento, se podrá ejecutar:
 ```bash
-npm run deploy
+cd frontend
+npm install
+npm run build
 ```
+Luego, se colocan el contenido del path `frontend/dist` en la rama `gh-pages` para servirlas con GitHub Pages.
 
 
 <br><br>
 
 # Revisiones Previas al Push en GitHub
 > [!IMPORTANT] BackEnd
-> ✔️ Cifrar los archivos con variables de produccion usando el script `cipher_prod.ps1`. Esto crea las versiones cifradas.
-> <br>✔️ Restaurar los archivos `/backend/config.php` y `/frontend/.env` con las variables propias de Docker.
-> <br>✔️ Si se sirven imagenes, cambiar las url que devuelve el backend para servirlas localmente.
+> ✔️ Cifrar los archivos con variables de produccion usando el script `gpg-tools.sh`. Esto crea las versiones cifradas.
+> <br>✔️ Restaurar los archivos `/backend/config.php` y `/frontend/.env` con las versiones de desarrollo.
 > <br>✔️ Configurar la `"version"` en el archivo `package.json`.
 > <br>✔️ Configurar el `README.md` y los archivos de documentación asociados.
 
