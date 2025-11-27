@@ -1,17 +1,11 @@
-FROM php:8.3.27-apache
+# -> backend/Dockerfile
+FROM php:8.3-fpm
 
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+# Instalar extensiones de PHP necesarias
+RUN apt-get update && apt-get install -y libsqlite3-dev && docker-php-ext-install pdo_sqlite
 
-RUN a2enmod rewrite
+# Configurar el directorio de trabajo
+WORKDIR /app
 
-COPY . /var/www/html
-
-
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
-
-ENV APACHE_DOCUMENT_ROOT=/var/www/html
-ENV PHP_DISPLAY_ERRORS=1
-ENV PHP_ERROR_REPORTING=E_ALL
-
-EXPOSE 80
+# Ejecutar PHP-FPM
+CMD ["php-fpm"]

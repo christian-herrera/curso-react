@@ -1,7 +1,0 @@
-POST https://leme.myqnapcloud.com:60502/Productos-API.php HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2LmNocmlzdGlhbmhlcnJlcmEuY29tLmFyIiwiaWF0IjoxNzYyMDE3OTc2LCJleHAiOjE3NjIwMjE1NzYsImVtYWlsIjoidXNlckB1c2VyIiwicm9sIjoidXNlciJ9.1u1dBPLASGRdiNDnGwLpCpfmUSCP3lO97kOmuUG48-I
-
-{
-    "action": "listar_productos"
-}

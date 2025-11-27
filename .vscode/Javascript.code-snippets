@@ -1,0 +1,104 @@
+{
+	// Place your área de trabajo de frontend snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+
+    "Post usando Axios": {
+        "scope": "javascript,typescript",
+        "prefix": "_new_service",
+        "body": [
+            "/**",
+            "* ### Service: ${1:Titulo del servicio}",
+            "* ${2:Descripción del servicio}",
+            "* @param {String} token Token de autenticación JWT",
+            "* @param {Number} timeout Tiempo máximo de espera en milisegundos (por defecto: 5000 ms)",
+            "* @returns {Object} Resultado de la operación cuya estructura será:",
+            "* - `code`: Código de respuesta del API",
+            "* - `message`: Mensaje de error (si `success` es false)",
+            "* - `data`: Datos devueltos por el servicio (si `success` es true)",
+            "*/",
+            "export async function ${3:Nombre del servicio...}(token, timeout = 5000) {",
+            "    try {",
+            "        const resp = await axios.post(",
+            "            import.meta.env.VITE_API_PRODUCTOS_URL,",
+            "            {",
+            "                param1: 100,",
+            "            },",
+            "            {",
+            "                timeout,",
+            "                headers: {",
+            "                    \"Content-Type\": \"application/json\",",
+            "                    Authorization: `Bearer \\${token}`,",
+            "                },",
+            "            }",
+            "        );",
+            "",
+            "        // console.log(\"Respuesta de ${3}:\", resp.data);",
+            "        return validateResponse(resp.data);",
+            "    } catch (error) {",
+            "        // console.log(\"Error en ${3}:\", error);",
+            "        throw new Error(\"Error en el servicio: \" + error.message);",
+            "    }",
+            "}",
+            "$0"
+        ],
+        "description": "Crea un servicio que realiza una solicitud POST a la API,\npasando el token JWT y un payload JSON.\n\n⚠️ Requiere agregar axios a los imports si no está presente.\n\n->"
+    },
+
+
+
+    "Hook para llamar al servicio": {
+        "scope": "javascript,typescript",
+        "prefix": "_new_hook",
+        "body": [
+            "/**",
+            "* ### Hook: ${1:Titulo del hook}",
+            "* ${2:Descripción del hook}",
+            "* @returns {Object} Resultado de la operación con el formato:",
+            "* - `success`: Booleano que indica si el resultado final fue exitoso",
+            "* - `unauthorized`: Booleano relacionado con la autorización (si aplica)",
+            "* - `products`: Array con los datos que devuelve el backend (si `success` es true)",
+            "* - `message`: Mensaje de error (si `success` es false)",
+            "*/",
+            "async function ${3:Nombre del hook}() {",
+            "    try {",
+            "        const result = await ${4:Servicio que hace el fetch...}(token);",
+            "        //console.log(\"Resultado de ${3}:\", result);",
+            "",
+            "        // Éxito!",
+            "        if (result.code === ApiCodes.DB_QUERY_SUCCESS) {",
+            "            return { success: true, unauthorized: false, products: result.data };",
+            "        }",
+            "",
+            "        // Token inválido o expirado",
+            "        if (result.code === ApiCodes.TOKEN_EXPIRED || result.code === ApiCodes.TOKEN_FAIL) {",
+            "            onTokenExpired();",
+            "            return { success: false, unauthorized: true, message: \"Token inválido o expirado\" };",
+            "        }",
+            "",
+            "        // Otro error...",
+            "        return { success: false, unauthorized: false, message: \"Error al obtener los datos!\" };",
+            "    } catch (error) {",
+            "        //console.log(\"Error en ${3}:\", error);",
+            "        return { success: false, unauthorized: false, message: error.message };",
+            "    }",
+            "}"
+        ],
+        "description": "Crea un hook personalizado que llama a un servicio específico\ny maneja su resultado.\n\n⚠️ Requiere importar:\n- Al servicio\n- A ApiCodes\n- A useAuth para tomar el token\n\n->"
+    }
+}
+

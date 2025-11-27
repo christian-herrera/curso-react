@@ -1,6 +1,0 @@
-POST https://leme.myqnapcloud.com:60502/Hasher-API.php HTTP/1.1
-content-type: application/json
-
-{
-    "password": "user1234"
-}

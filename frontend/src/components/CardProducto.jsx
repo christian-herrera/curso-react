@@ -1,14 +1,13 @@
 import { useState } from "react";
 
 
-/**
- * --------------------------------------------------------------
- * ==> CardProducto.jsx - Componente de tarjeta de producto
- * --------------------------------------------------------------
- */
+// --------------------------------------------------------------
+// --> Component: CardProducto.jsx - Tarjeta de producto
+// --------------------------------------------------------------
 export default function CardProducto({ producto, onAgregar_fn, cantEnCarrito = 0 }) {
     const [imgLoading, setImgLoading] = useState(true);
-
+    
+    // --> RENDERIZADO
     return (
         <div key={producto.id} className="col-12 col-md-4">
             <div className="card mb-4">
@@ -26,11 +25,11 @@ export default function CardProducto({ producto, onAgregar_fn, cantEnCarrito = 0
                 {/* Imagen */}
                 <img
                     src={producto.image}
-                    className="card-img-top"
+                    className="card-img-top mx-auto"
                     onLoad={() => setImgLoading(false)}
                     style={{
-                        height: "200px",
-                        objectFit: "cover",
+                        height: "250px",
+                        objectFit: "contain",
                         display: imgLoading ? "none" : "block"
                     }}
                     alt="Error..." />
@@ -40,7 +39,7 @@ export default function CardProducto({ producto, onAgregar_fn, cantEnCarrito = 0
                     <h5 className="card-title">{producto.title}</h5>
                     <p className="card-text">{producto.description}</p>
                     <p className="card-text fs-4 d-flex align-items-center gap-2">
-                        ${producto.price.toFixed(2)}
+                        ${(producto.price/100).toFixed(2)}
                         {cantEnCarrito > 0 && (
                             <span className="badge text-bg-success">{cantEnCarrito}</span>
                         )}

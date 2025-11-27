@@ -1,0 +1,21 @@
+# Login con Admin User
+# @name login
+POST https://leme.myqnapcloud.com:60502/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "123456"
+}
+
+### ------------------------------------------------------
+# Agrego un nuevo producto
+@authToken = {{login.response.body.data.token}}
+POST https://leme.myqnapcloud.com:60502/api/get-products HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+    "limit": 100
+}
+

@@ -1,29 +1,50 @@
 <?php
 
+
 // ┌─────────────────────────────────────────────────────────┐
-// │       >>   URL DE LA QUE ACEPTA PETICIONES   <<         │
+// │            >>   CONFIGURACIÓN GENERAL   <<              │
 // └─────────────────────────────────────────────────────────┘
-define('ISSUER', 'http://localhost');  // Issuer
+define('API_VERSION', '0.3.1');
+
+define('HOST_FRONTEND', 'http://localhost:30500');
+define('HOST_BACKEND', HOST_FRONTEND);
+
+define('PATH_ROOT', __DIR__);
+define('PATH_IMAGES', PATH_ROOT . '/public/images/');
+define('URI_IMAGES', HOST_BACKEND . '/public/images/');
+
+define('PATH_SQLITE_DB', PATH_ROOT . '/api/data/my.db');
 
 
 // ┌─────────────────────────────────────────────────────────┐
 // │        >>   PARÁMETROS PARA EL TOKEN JWT   <<           │
 // └─────────────────────────────────────────────────────────┘
-define('KEY_SECRET', 'mi_clave_secreta_ultra_segura'); 
-define('EXPIRATION_TIME', 60 * 60); // 1 hora
+define('JWT_SECRET_KEY', 'mi_clave_secreta_ultra_segura');
+define('JWT_EXPIRATION_TIME', 60 * 60); // 1 hora
 
-// Define la forma en que PHP toma la cabecera Authorization
-//  true: Usa $_SERVER con lo cual, se debe agregar la linea: "SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1" en el .htaccess
-//  false: Usa getallheaders() (no requiere configuración extra en el servidor)
-define('USE_SERVER_HEADERS', false);
 
 
 // ┌─────────────────────────────────────────────────────────┐
-// │        >>   PARÁMETROS DE CONEXIÓN A LA BD   <<         │
+// │                    >>   RUTAS   <<                      │
 // └─────────────────────────────────────────────────────────┘
-define('DB_HOST', 'db');
-define('DB_NAME', 'dev');
-define('DB_USER', 'devuser');
-define('DB_PASS', 'devpassword');
-define('DB_CHARSET', 'utf8mb4');
-define('DB_PORT', 3306);
+define("PUBLIC_ROUTES", [
+    '/api/login',
+]);
+
+define("USER_ROUTES", [
+    '/api/get-products',
+    '/api/search-products' // TODO --> implementar
+]);
+
+define("ADMIN_ROUTES", [
+    '/api/delete-product',
+    '/api/add-product'
+]);
+
+
+
+// ┌─────────────────────────────────────────────────────────┐
+// │           >>   CONFIGURACIÓN DE DEBUG   <<              │
+// └─────────────────────────────────────────────────────────┘
+define('DEBUG_ENABLE', true);
+define('DEBUG_PATH', PATH_ROOT . '/logs/debug.log');

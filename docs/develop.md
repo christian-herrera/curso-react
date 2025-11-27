@@ -25,19 +25,10 @@ npm run build
 <br><br>
 
 # Backend
-Primero se deberá instalar [Docker](https://www.docker.com/). Luego, una vez todo instalado y configurado se utiliza (en la raiz del repositorio):
+Primero se deberá instalar [Docker](https://www.docker.com/). Luego, una vez todo instalado y configurado se utiliza (en la raíz del repositorio):
 
 ```bash
 docker compose up -d    # Para levantar los contenedors
 docker compose down     # Para detener los contenedores inicializados (agregando `-v` se eliminan los volumenes)
 ```
-Si es la primera vez que se ejecuta el contenedor, se deberá crear las bases de datos básicas usando las instrucciones sql del archivo [/backend/SQL_structure.sql](/backend/SQL_structure.sql). Esto se puede hacer utilizando el software **MySQL Workbench** utilizando los datos de la base de datos local:
-
-|    Campo    |     Valor      |
-| :---------: | :------------: |
-| **Usuario** |     `root`     |
-|    Clave    | `rootpassword` |
-|    Host     |  `localhost`   |
-|   Puerto    |     `3306`     |
-
-Y luego cargar el contenido del archivo nombrado.
+Si es la primera vez que se ejecuta el contenedor, se deberá crear las bases de datos básicas usando las instrucciones sql del archivo [/backend/api/data/create-statnebt.sql](/backend/api/data/create-statment.sql). Esto se puede hacer utilizando el software **[SQLiteStudio](https://sqlitestudio.pl/)**, cargando 

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function HomePage() {
     const navigate = useNavigate();
 
+    // --> RENDERIZADO
     return (
         <motion.div
             key="banner"
@@ -19,7 +20,7 @@ export default function HomePage() {
             transition={{ duration: 0.4 }}  // Duración de la transición
         >
 
-            <div style={{ width: "600px", maxWidth: "400px", borderRadius: "8px" }}>
+            <div className="px-2" style={{ width: "600px", maxWidth: "400px", borderRadius: "8px" }}>
                 {/* Titulo */}
                 <h1 className="fw-bold text-white" style={{ fontSize: "2.5rem" }}>Bienvenido...</h1>
 

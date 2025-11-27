@@ -7,9 +7,9 @@
 - [Introducción](#introducción)
   - [Comandos Útiles](#comandos-útiles)
 - [Estructura del `docker-compose.yml`](#estructura-del-docker-composeyml)
-  - [DataBase](#database)
   - [BackEnd](#backend)
-  - [Network](#network)
+  - [Frontend](#frontend)
+- [Settings para Linux](#settings-para-linux)
 
 <br><br>
 
@@ -29,29 +29,46 @@
 
 # Estructura del `docker-compose.yml`
 
-Se exponen dos servicios: ***`db`*** y ***`backend`***.
-
-## DataBase
-
-- `image` permite definir que se utilizará la imagen oficial de MySQL 8.4 Server.
-- `ports` mapea el puerto del contenedor `3306` para poder acceder desde `localhost` usando `localhost:3306`.
-- `enviroments` permite definir las variables a utilizar por el contenedor. Aquí se encuentran las credenciales y demás datos como el nombre de la base de datos.
-- `volumes` define que se montará la carpeta `db_data` dentro del contenedor. Accesible internamente como `/var/lib/mysql`. Se define al final con la linea `volumes:` para indicar que Docker maneje automaticamente este volumen.
-- `networks` define que el contenedor usará la red `devnet` que se detalla al final con `networks`.
-
+Se exponen tres servicios: 
+- ***`vite`***: Utiliza un DockerFile personalizado ubicado en `/frontend/Dockerfile`.
+- ***`php`***: Utiliza una DockerFile personalizado ubicado en `/backend/Dockerfile`.
+- ***`nginx`***: Utiliza una imagen oficial de Nginx y un archivo de configuración personalizado ubicado en `/backend/docker/default.conf`.
 
 <br><br>
 
 ## BackEnd
 
-- `image` permite definir que se utilizará la imagen oficial de PHP 8.3.27 con Apache preinstalado. Esto ya incluye todo para servir archivos `.php` que se ubiquen dentro del contenedor en el path `/var/www/html`.
-- `ports` vuelve a mapear el puerto del contenedor `80` para poder acceder desde `localhost` usando `localhost:9000`.
-- `volumes` define que se montará la carpeta `/backend` dentro del contenedor accesible como `/var/www/html`.
-- `networks` vuelve a definir que el contenedor usará la red `devnet` que se define al final.
+El backend está compuesto por dos servicios: ***`php`*** y ***`nginx`***. En conjunto permiten servir una aplicación PHP a través de un servidor web Nginx.
+
+***`nginx`*** escucha sobre el puerto `30500` y redirige las peticiones en funcion de la URL solcitada. 
+- Si la URL comienza con `/api` oi bíen es un archivo `.php`, las peticiones son redirigidas al servicio ***`php`***, que escucha en el puerto `9000` y maneja las solicitudes PHP utilizando PHP-FPM. 
+- En el resto de los casos, las peticiones son enviadas a el servicio ***`vite`***, que sirve el frontend de la aplicación.
+<br><br>
+
+## Frontend
+
+El servicio ***`vite`*** se encarga de servir la aplicación frontend desarrollada con Vite. Este servicio utiliza una imagen oficial de Node.js y monta la app sobre el puerto `5173` permitiendo el acceso a la aplicación desde el navegador.
+
 
 <br><br>
 
-## Network
-Docker crea una red virtual ***interna*** donde todos los servicios se conectan. El tipo `bridge` es el estandar porque cada contenedor tiene su IP y nombre de host dentro de esa red.
+# Settings para Linux
+En linux es posible que se necesiten algunos ajustes adicionales para que Docker funcione correctamente con permisos de usuario.
 
+> [!TIP]
+> ### Permitir Tráfico entre contenedores Docker y el host con UFW
+> Editar el archivo: `/etc/default/ufw` y configurar la siguiente linea:
+> ```
+>DEFAULT_FORWARD_POLICY="ACCEPT" 
+>```
 
+<br>
+
+> [!TIP]
+> ### Usar Docker sin sudo
+> Agregar el usuario actual al grupo `docker` con el siguiente comando:
+> ```bash
+> sudo usermod -aG docker $USER
+> newgrp docker $USER
+> ```
+> Luego, intentar ejecutar comandos como `docker compose up -d` sin `sudo`.

@@ -12,12 +12,15 @@
 
 > [!IMPORTANT] FrontEnd
 > ✔️ Configurar en el archivo `.env` las variables de producción.
-> <br>✔️ 
+
+<br>
 
 > [!IMPORTANT] BackEnd
 > ✔️ Configurar el archivo `config.php` con las variables de producción.
 > <br>✔️ Verificar que el CORS no rechaza las peticiones provenientes del frontend (si se utiliza dominios distintos para el frontend y el backend).
-> <br>✔️ 
+
+
+<br>
 
 En este momento, se podrá ejecutar:
 ```bash
