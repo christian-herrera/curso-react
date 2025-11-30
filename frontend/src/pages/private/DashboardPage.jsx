@@ -5,7 +5,8 @@ import useProductList from "../../hooks/useProductList";
 
 // Componentes
 import CardProductAdd from "../../components/admin/CardProductAdd";
-import CardListProducts from "../../components/admin/CardListProducts";
+import TableOfProducts from "../../components/admin/TableOfProducts";
+import Paginator from "../../components/Paginator";
 
 // Utils
 import { showQuestion, showToast } from "../../utils/utilsAlert";
@@ -13,19 +14,22 @@ import { showQuestion, showToast } from "../../utils/utilsAlert";
 // Styles
 import "../../styles/dashboard.css";
 
-
 // --------------------------------------------------------------
 // ==> Dashboard.jsx - Página del panel de control
 // --------------------------------------------------------------
 export default function DashboardPage() {
     const { getProductList, delProduct, addProduct } = useProductList();
     const [productList, setProductList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     // --> Utilidad: Obtener la lista de productos
-    async function get() {
-        const resp = await getProductList();
+    async function get(page = currentPage) {
+        const resp = await getProductList(page);
         if (resp.success) {
-            setProductList(resp.products);
+            setProductList(resp.data.products);
+            setTotalPages(resp.data.total_pages);
+            setCurrentPage(page);
         } else if (!resp.unauthorized) {
             showToast("Error al obtener los datos!", "error");
         }
@@ -33,7 +37,7 @@ export default function DashboardPage() {
 
     // --> Hook: Obtener la lista de productos al cargar la página
     useEffect(() => {
-        get();
+        get(1);
     }, []);
 
     // --> Handle: Submit del formulario
@@ -43,14 +47,14 @@ export default function DashboardPage() {
             e.target.title.value,
             e.target.subtitle.value,
             e.target.description.value,
-            parseInt(e.target.price.value * 100),// Convertir a centavos
+            parseInt(e.target.price.value * 100), // Convertir a centavos
             e.target.image.files[0]
         );
         if (result.success) {
             showToast("Producto agregado correctamente", "success");
             e.target.reset();
             get();
-        } else if(!result.unauthorized) {
+        } else if (!result.unauthorized) {
             showToast("Error al agregar el producto", "error");
         }
     };
@@ -77,11 +81,22 @@ export default function DashboardPage() {
                 <h2 className="pb-2">Panel de Administración</h2>
 
                 <div className="row">
+                    {/* Listado de archivos */}
+                    <div className="col-12 mb-4">
+                        <div className="card dashboard-card">
+                            <div className="card-body">
+                                {/* Titulo */}
+                                <h3 className="card-title mb-3 fs-4">Listado Actual</h3>
+
+                                {/* Tabla */}
+                                <TableOfProducts productList={productList} on_delProduct={handleDelProduct} />
+                                <Paginator currentPage={currentPage} totalPages={totalPages} onPageChange={(newPage) => get(newPage)} />
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Form para agregar producto */}
                     <CardProductAdd on_submit={handleSubmit} />
-
-                    {/* Listado de archivos */}
-                    <CardListProducts productList={productList} on_delProduct={handleDelProduct} />
                 </div>
             </div>
         </>

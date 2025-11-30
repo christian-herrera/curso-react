@@ -16,6 +16,6 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-    "limit": 100
+    "page": 1
 }
 

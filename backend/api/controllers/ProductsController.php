@@ -18,18 +18,17 @@ class ProductsController {
             Responder::send(ResultCode::INVALID_JSON, "Error leyendo el JSON recibido!");
             return;
         }
-        $limit = !isset($in['limit']) ? 10 : $in['limit'];
-        $limit = intval($limit) > 30 ? 30 : intval($limit);
+        $page = isset($in['page']) ? intval($in['page']) : 1;  // default 1
+        $page = max(1, $page);  // mínimo 1
 
         // Leo de la BD
         require_once __DIR__ . '/../models/ProductsModel.php';
-        $result = ProductsModel::getProducts($limit);
+        $result = ProductsModel::getProducts($page);
 
         if (!$result["result"]) {
             Responder::send(ResultCode::DB_QUERY_ERROR, "Error al leer de la tabla 'productos'!");
             return;
         }
-
         Responder::send(ResultCode::DB_QUERY_SUCCESS, "Lectura correcta", $result["data"]);
     }
 

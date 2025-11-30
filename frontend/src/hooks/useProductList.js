@@ -31,13 +31,13 @@ export default function useProductList() {
      * - `products`: Array con los productos (si `success` es true)
      * - `message`: Mensaje de error (si `success` es false)
      */
-    async function getProductList() {
+    async function getProductList(page) {
         try {
-            let result = await getProductsService(token); // -> Service
+            let result = await getProductsService(page, token); // -> Service
 
             // Éxito!
             if (result.code === ApiCodes.DB_QUERY_SUCCESS) {
-                return { success: true, unauthorized: false, products: result.data };
+                return { success: true, unauthorized: false, data: result.data };
             }
 
             // Token inválido o expirado

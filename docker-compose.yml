@@ -2,12 +2,12 @@ services:
   # App con React
   vite:
     container_name: vite
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    volumes:
+    user: "${UID}:${GID}"
+    image: node:22-alpine
+    working_dir: /app
+    volumes: 
       - ./frontend:/app
-      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
     networks: [default]
     tty: true
 
@@ -15,7 +15,7 @@ services:
   # PHP-FPM para backend
   php:
     container_name: php
-    user: "1000:1000" # Ajustar con `id -u` y `id -g`
+    user: "${UID}:${GID}"
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -32,7 +32,7 @@ services:
     container_name: nginx
     image: nginx:latest
     ports:
-      - 30500:80
+      - "${APP_PORT}:80"
     volumes:
       - ./backend:/app
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
@@ -49,10 +49,5 @@ networks:
   default:
     name: dev_curso
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.18.0.0/16
-    driver_opts:
-      com.docker.network.bridge.enable_icc: "true"
 
     

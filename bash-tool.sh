@@ -1,3 +1,7 @@
+#!/bin/bash
+
+
+
 encrypt_files() {
     clear
     echo "⚠️  ADVERTENCIA: Vas a sobrescribir las credenciales cifradas de PRODUCCIÓN ⚠️"
@@ -65,7 +69,7 @@ deploy_gh_pages() {
 
     # Deploy
     clear
-    echo -e "\n🏗️ Preparando deploy..."
+    echo -e "\n🪚 Preparando deploy..."
     echo -e "------------------------------------------------------------------------------"
 
     # Worktree temporario para gh-pages
@@ -104,6 +108,26 @@ deploy_gh_pages() {
     echo -e "  ↳ Consultar en: https://github.com/christian-herrera/curso-react/tree/gh-pages\n\n"
 }
 
+
+make_deploy_files() {
+    clear
+    echo -e "\n📦 Empaquetando backend..."
+    echo -e "------------------------------------------------------------------------------\n"
+    rm -rf ./backend/TO-DEPLOY
+    mkdir -p ./backend/TO-DEPLOY
+    rsync -av \
+        --exclude="Dockerfile" \
+        --exclude="config.php.asc" \
+        --exclude="config.dev.php" \
+        --exclude="config.prod.php.asc" \
+        --exclude="_requests/" \
+        --exclude="logs/" \
+        --exclude="TO-DEPLOY/" \
+        "./backend/" "./backend/TO-DEPLOY"
+
+    echo -e "\n🚨 Backend comprimido correctamente en 'backend.zip'.\n\n"
+}
+
                                            
                                            
 clear
@@ -118,7 +142,8 @@ echo "1) Colocar variables de producción"
 echo "2) Colocar variables de desarrollo"
 echo "3) Cifrar archivos (.env, config.php)"
 echo "4) Subir a GitHub Pages"
-echo "5) Salir"
+echo "5) Empaquetar backend para deploy"
+echo "6) Salir"
 echo "--------------------------------------"
 read -p "Que desea realizar?: " option
 
@@ -127,6 +152,7 @@ case $option in
     2) apply_dev_files;;
     3) encrypt_files;;
     4) deploy_gh_pages;;
-    5) echo -e "\nSaliendo...";;
+    5) make_deploy_files;;
+    6) echo -e "\nSaliendo...";;
     *) echo -e "\nOpción inválida.";;
 esac

@@ -37,22 +37,37 @@ class ProductsModel {
      * - `data` contiene los productos si `result` es true.
      * - `message` contiene el mensaje de error si `result` es false.
      */
-    public static function getProducts(int $limit = 10): array {
+    public static function getProducts(int $page = 1): array {
         try {
             $db = self::init();
+
+            // Obtengo la página consultada
             $stmt = $db->prepare("
                 SELECT 
                     id, title, subtitle, description, price, 
                     '" . URI_IMAGES . "' || image AS image
-                FROM products ORDER BY id DESC LIMIT :limit
+                FROM products ORDER BY id DESC LIMIT :limit OFFSET :offset
             ");
-            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':limit', API_PRODUCTS_PER_PAGE, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', ($page - 1) * API_PRODUCTS_PER_PAGE, PDO::PARAM_INT);
             $stmt->execute();
-            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Obtengo el total de productos
+            $stmt = $db->prepare("SELECT COUNT(*) AS total FROM products");
+            $stmt->execute();
+            $total_products = $stmt->fetch(PDO::FETCH_ASSOC)["total"];
+
+            $resp = [
+                "products" => $products,
+                "current_page" => $page,
+                "total_pages" => ceil($total_products / API_PRODUCTS_PER_PAGE),
+                "total_products" => $total_products,
+                "products_per_page" => API_PRODUCTS_PER_PAGE
+            ];
 
             Debug::log("Productos leídos con éxito de la base de datos.");
-
-            return ["result" => true, "data" => $user];
+            return ["result" => true, "data" => $resp];
         } catch (PDOException $e) {
             Debug::error("Error al obtener productos: " . $e->getMessage());
             return ["result" => false, "message" => "Error al leer de la base de datos"];

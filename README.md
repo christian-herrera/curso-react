@@ -4,7 +4,7 @@
 <br>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/christian-herrera/curso-react)
-![Static Badge](https://img.shields.io/badge/version-v0.3.2-blue)
+![Static Badge](https://img.shields.io/badge/version-v0.3.3-blue)
 
 ![GitHub License](https://img.shields.io/github/license/christian-herrera/curso-react?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/christian-herrera/curso-react?style=for-the-badge)
@@ -34,5 +34,5 @@ Proyecto realizado para el curso que brinda ***Talento Tech*** a traves de la *A
 - [x] Interactividad mejorada con React Icons y React Toastify (**se utilizó SweetAlert2**)
 - [x] SEO y accesibilidad con React Helmet
 - [ ] Barra de búsqueda para filtrar productos
-- [ ] Paginador de productos
+- [x] Paginador de productos
 - [x] Documentación básica del proyecto
