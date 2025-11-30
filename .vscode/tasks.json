@@ -1,13 +1,37 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
         {
             "label": "Abrir Credenciales",
             "type": "shell",
-            "command": "code -g backend/config.php frontend/.env",
-            "problemMatcher": []
+            "command": "code -g backend/config.php frontend/.env frontend/package.json",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never",          // ← La terminal NO se abre
+                "close": true               // ← VS Code puede cerrar si llega a abrirse
+            }
+        },
+
+        {
+            "label": "Inicializar Contenedores",
+            "type": "shell",
+            "command": "docker compose up -d",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",          // ← La terminal NO se abre
+                "close": false               // ← VS Code puede cerrar si llega a abrirse
+            }
+        },
+
+        {
+            "label": "Detener Contenedores",
+            "type": "shell",
+            "command": "docker compose down",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",          // ← La terminal NO se abre
+                "close": false               // ← VS Code puede cerrar si llega a abrirse
+            }
         }
     ]
 }

@@ -31,7 +31,7 @@ export default function HomePage() {
                 </p>
 
                 {/* Boton para mostrar el formulario de login */}
-                <button className="btn btn-outline-primary btn-lg px-5" onClick={() => navigate('/login')}>
+                <button className="btn btn-outline-primary btn-lg px-5" onClick={() => navigate('/login')} aria-label="Ir a la página de inicio de sesión">
                     Ingresar
                 </button>
             </div>

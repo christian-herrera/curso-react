@@ -77,7 +77,7 @@ export default function CarritoPagePage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* Carrito Vacio */}
+                            {/* Carrito Vacío */}
                             {cart.length === 0 && (
                                 <tr>
                                     <td colSpan="3" className="text-center fs-5 fst-italic py-3">
@@ -88,16 +88,32 @@ export default function CarritoPagePage() {
 
                             {cart.map((item, index) => (
                                 <tr key={index}>
-                                    <td>{item.title}</td>
+                                    <td scope="row">{item.title}</td>
 
                                     <td className="text-center">$ {(item.price / 100).toFixed(2)}</td>
 
                                     <td>
                                         <div className="d-flex justify-content-center align-items-center gap-2">
-                                            <img src={leftIcon} alt="Restar" style={{ cursor: "pointer" }} onClick={() => cartDec(item.id)} />
+                                            {/* Botón de Decremento */}
+                                            <button className="btn p-0 border-0 bg-transparent" onClick={() => cartDec(item.id)} aria-label={`Restar uno a ${item.title}`}>
+                                                <img src={leftIcon} alt="" />
+                                            </button>
+                                            <label htmlFor={`quantity-${item.id}`} className="visually-hidden">
+                                                Cantidad de {item.title}
+                                            </label>
+
+                                            {/* Cantidad del producto en cuestión */}
                                             <input id={`quantity-${item.id}`} className="form-control text-center" style={{ width: "50px" }} value={item.quantity} readOnly />
-                                            <img src={rightIcon} alt="Sumar" style={{ cursor: "pointer" }} onClick={() => cartInc(item.id)} />
-                                            <img src={trashIcon} alt="Eliminar" style={{ cursor: "pointer" }} onClick={() => cartRemove(item.id)} />
+
+                                            {/* Botón de Incremento */}
+                                            <button className="btn p-0 border-0 bg-transparent" onClick={() => cartInc(item.id)} aria-label={`Sumar uno a ${item.title}`}>
+                                                <img src={rightIcon} alt="" />
+                                            </button>
+
+                                            {/* Botón de eliminar item */}
+                                            <button className="btn p-0 border-0 bg-transparent" onClick={() => cartRemove(item.id)} aria-label={`Eliminar ${item.title} del carrito`}>
+                                                <img src={trashIcon} alt="" />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -116,9 +132,8 @@ export default function CarritoPagePage() {
 
                 <div className="container row mt-4 mx-0">
                     <div className="col-md-8 col-12 mx-auto">
-                        <button className="btn btn-warning w-100 fs-5 text-white" style={{ height: "2.5em" }} onClick={handlePay}>
-                            <strong>Realizar Compra </strong>
-                            <span className="fs-4">🛒 → 💸</span>
+                        <button className="btn btn-warning w-100 fs-5 fw-bold" style={{ height: "2.5em" }} onClick={handlePay}>
+                            Realizar Compra
                         </button>
                     </div>
                 </div>

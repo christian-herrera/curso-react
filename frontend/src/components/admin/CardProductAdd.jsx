@@ -16,7 +16,7 @@ export default function CardProductAdd({ on_submit }) {
             <div className="card dashboard-card">
                 <div className="card-body">
                     {/* Titulo */}
-                    <h5 className="card-title mb-3">Agregar Producto</h5>
+                    <h3 className="card-title mb-3 fs-4">Agregar Producto</h3>
 
                     {/* Form para el Upload */}
                     <form onSubmit={on_submit} className="container-fluid row px-0 mx-0">

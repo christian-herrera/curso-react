@@ -8,7 +8,7 @@ require_once __DIR__ . '/../utils/Responder.php';
 // cd app && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 // php composer-setup.php
 // php composer.phar require firebase/php-jwt
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . "/../../vendor/autoload.php";
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

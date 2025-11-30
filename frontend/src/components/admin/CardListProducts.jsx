@@ -11,7 +11,7 @@ export default function CardListProducts({ productList = [], on_delProduct }) {
             <div className="card dashboard-card">
                 <div className="card-body">
                     {/* Titulo */}
-                    <h5 className="card-title mb-3">Listado Actual</h5>
+                    <h3 className="card-title mb-3 fs-4">Listado Actual</h3>
 
                     {/* Tabla */}
                     <div className="table-responsive">

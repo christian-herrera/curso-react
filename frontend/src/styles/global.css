@@ -1,75 +1,69 @@
 html,
 body,
 #root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #ECEFF1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #eceff1;
 }
-
-
 
 /* PublicLayout -> Background */
 .bg-home {
-  /* background:
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../assets/bg1.jpg"); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
 
-  height: 100vh;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  align-items: center;
-  text-align: center;
-  padding-top: 3rem;
+    align-items: center;
+    text-align: center;
+    padding-top: 3rem;
 }
 
 /* PublicLayout -> Logo */
 .bg-home img {
-  width: 100%;
-  max-width: 300px;
-  cursor: pointer;
-  margin-bottom: 1rem;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+    margin-bottom: 1rem;
 }
-
 
 /* LoginPage -> Container del Login Form */
 .container-login {
-  width: 400px;
-  max-width: 400px;
-  background-color: white;
-  border-radius: 8px;
+    width: 400px;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 8px;
 }
-
 
 @media screen and (max-width: 420px) {
-  .container-login {
-    width: calc(100vw - 20px);
-  }
+    .container-login {
+        width: calc(100vw - 20px);
+    }
 }
-
-
-
-
 
 /* Public Layout -> Loader Page */
 .loader-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle at center, #0A192F 0%, #020c1b 100%);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+
+/* Correccion para mejorar problemas de accesibilidad  */
+/* Botones */
+.btn-outline-primary {
+    --bs-btn-color: #0050c7;
 }

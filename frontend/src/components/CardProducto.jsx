@@ -36,7 +36,7 @@ export default function CardProducto({ producto, onAgregar_fn, cantEnCarrito = 0
 
                 {/* Titulo, descripción y precio */}
                 <div className="card-body">
-                    <h5 className="card-title">{producto.title}</h5>
+                    <h3 className="card-title fs-5">{producto.title}</h3>
                     <p className="card-text">{producto.description}</p>
                     <p className="card-text fs-4 d-flex align-items-center gap-2">
                         ${(producto.price/100).toFixed(2)}

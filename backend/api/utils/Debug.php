@@ -6,6 +6,10 @@ require_once __DIR__ . '/../../config.php';
 class Debug {
     public static function addLine(string $line) {
         if (!DEBUG_ENABLE) return;
+
+        if(!is_dir(dirname(DEBUG_PATH))) { // Creo el directorio si no existe
+            mkdir(dirname(DEBUG_PATH), 0777, true);
+        }
         file_put_contents(DEBUG_PATH, $line, FILE_APPEND | LOCK_EX);
     }
 

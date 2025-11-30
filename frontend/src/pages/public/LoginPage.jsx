@@ -52,7 +52,7 @@ export default function LoginPage() {
                 transition={{ duration: 0.4 }} // Duración de la transición
             >
                 <div className="container-login">
-                    <form className="container mt-3 pt-3" onSubmit={handleSubmit}>
+                    <form className="container mt-3 pt-3" onSubmit={handleSubmit} aria-describedby="login-help">
                         {/* Email */}
                         <div className="form-floating mb-3">
                             <input type="text" className="form-control" id="username" autoComplete="username" required />
@@ -65,22 +65,20 @@ export default function LoginPage() {
                             <label htmlFor="password">Contraseña</label>
                         </div>
 
-                        {/* Botones de acción */}
+                        {/* Submit */}
                         <button type="submit" className="btn btn-outline-primary w-100 mb-3">
                             Ingresar
                         </button>
 
+                        {/* Regresar + Help */}
                         <div className="d-flex justify-content-center align-items-center gap-2 pb-3">
-                            <div className="w-100">
-                                <button type="button" className="btn btn-outline-secondary w-100" onClick={() => navigate("/")}>
-                                    Regresar
-                                </button>
-                            </div>
-                            <div className="">
-                                <button type="button" className="btn btn-outline-secondary w-100 px-3" onClick={showHelpLoginMessage}>
-                                    ?
-                                </button>
-                            </div>
+                            <button type="button" className="btn btn-outline-secondary w-100" onClick={() => navigate("/")}>
+                                Regresar
+                            </button>
+
+                            <button type="button" className="btn btn-outline-secondary px-3" onClick={showHelpLoginMessage} aria-label="Mostrar ayuda">
+                                ?
+                            </button>
                         </div>
                     </form>
                 </div>
