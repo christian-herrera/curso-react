@@ -1,5 +1,5 @@
 // Servicios
-import { getProductsService, delProductService, addProductService } from "../services/apiProductos";
+import { getProductsService, delProductService, addProductService, getProductsWithQueryService } from "../services/apiProductos";
 
 // Contextos
 import { useAuth } from "../contexts/AuthContext";
@@ -130,13 +130,49 @@ export default function useProductList() {
 
 
 
+    /**
+     * ### Hook: Obtiene la lista de productos a partir de una búsqueda
+     * Utilizando el servicio correspondiente, obtiene la lista de productos solicitando
+     * al backend y pasando el término de búsqueda.
+     * 
+     * @returns {Object} Resultado de la operación con el formato:
+     * - `success`: Booleano que indica si la operación fue exitosa
+     * - `unauthorized`: Booleano relacionado con la autorización (si aplica)
+     * - `products`: Array con los productos (si `success` es true)
+     * - `message`: Mensaje de error (si `success` es false)
+     */
+    async function getProductsWithQuery(query) {
+        try {
+            let result = await getProductsWithQueryService(query, token); // -> Service
+
+            // Éxito!
+            if (result.code === ApiCodes.DB_QUERY_SUCCESS) {
+                return { success: true, unauthorized: false, data: result.data };
+            }
+
+            // Token inválido o expirado
+            if (result.code === ApiCodes.TOKEN_EXPIRED || result.code === ApiCodes.TOKEN_FAIL) {
+                onTokenExpired();
+                return { success: false, unauthorized: true, message: "Token inválido o expirado" };
+            }
+
+            // Otro error...
+            return { success: false, unauthorized: false, message: "Error al obtener los datos!" };
+        } catch (error) {
+            return { success: false, unauthorized: false, message: error.message };
+        }
+    }
+
+
+
 
 
 
     return {
         getProductList,
         delProduct,
-        addProduct
+        addProduct,
+        getProductsWithQuery
     };
 }
 

@@ -38,10 +38,11 @@ switch ($method . " " . $path) {
         ProductsController::getProducts();
         break;
 
-    case 'POST /api/search-products': // TODO
-        // Código para manejar la ruta /api/search-products
-        echo "Buscando productos...";
+    case 'POST /api/search-products':
+        require_once __DIR__ . '/./controllers/ProductsController.php';
+        ProductsController::searchProducts();
         break;
+
 
 
 

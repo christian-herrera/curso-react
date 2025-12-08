@@ -4,7 +4,7 @@
 // ┌─────────────────────────────────────────────────────────┐
 // │            >>   CONFIGURACIÓN GENERAL   <<              │
 // └─────────────────────────────────────────────────────────┘
-define('API_VERSION', '0.3.3');
+define('API_VERSION', '0.4.0');
 
 define('HOST_FRONTEND', 'http://localhost:30500');
 define('HOST_BACKEND', HOST_FRONTEND);
@@ -23,12 +23,6 @@ define('JWT_SECRET_KEY', 'mi_clave_secreta_ultra_segura');
 define('JWT_EXPIRATION_TIME', 60 * 60); // 1 hora
 
 
-// ┌─────────────────────────────────────────────────────────┐
-// │                >>   RATE LIMIT  <<                      │
-// └─────────────────────────────────────────────────────────┘
-define('RATE_LIMIT_MAX_REQUESTS', 60);  // Por minuto
-define('RATE_LIMIT_PATH', PATH_ROOT . '/rate_limit/');
-
 
 // ┌─────────────────────────────────────────────────────────┐
 // │                    >>   RUTAS   <<                      │
@@ -39,7 +33,7 @@ define("PUBLIC_ROUTES", [
 
 define("USER_ROUTES", [
     '/api/get-products',
-    '/api/search-products' // TODO --> implementar
+    '/api/search-products'
 ]);
 
 define("ADMIN_ROUTES", [

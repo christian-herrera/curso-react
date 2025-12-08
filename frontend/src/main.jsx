@@ -1,11 +1,15 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy } from "react";
 import { createRoot } from "react-dom/client";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";  // No es necesario para este proyecto
 import "./styles/global.css";
 
-import AppRouter from "./routes/AppRouter";
+
+// --->> Carga perezosa (lazy loading) de AppRouter <<---
+// import AppRouter from "./routes/AppRouter";
+const AppRouter = lazy(() => import("./routes/AppRouter"));
+
 import AuthProvider from "./contexts/AuthContext";
 import CartProvider from "./contexts/CartContext";
 

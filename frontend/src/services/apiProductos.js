@@ -34,6 +34,49 @@ export async function getProductsService(page, token, timeout = 5000) {
     }
 }
 
+
+
+
+
+/**
+ * ### Service: Obtiene la lista de productos a partir de una búsqueda
+ * Envía la petición al backend para obtener la lista de productos a partir
+ * de un término de búsqueda.
+ * @param {String} token Token de autenticación JWT
+ * @param {Number} timeout Tiempo máximo de espera en milisegundos (por defecto: 5000 ms)
+ * @returns {Promise<any>} Resultado de la operación cuya estructura será:
+ * - `code`: Código de respuesta del API
+ * - `message`: Mensaje de error (si `success` es false)
+ * - `data`: Datos devueltos por el servicio (si `success` es true)
+ */
+export async function getProductsWithQueryService(query, token, timeout = 5000) {
+    try {
+        const resp = await axios.post(
+            import.meta.env.VITE_API_URL + "/search-products",
+            { query },
+            {
+                timeout: timeout,
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        // console.log("Respuesta de getProductsWithQueryService:", resp.data);
+        return validateResponse(resp.data);
+    } catch (error) {
+        // console.log("Error en getProductsWithQueryService:", error);
+        throw new Error("Error en el servicio: " + error.message);
+    }
+}
+
+
+
+
+
+
+
 /**
  * ### Service: Elimina un producto
  * Toma el id y envía la peticion al backend para eliminar el producto.

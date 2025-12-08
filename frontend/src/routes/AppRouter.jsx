@@ -15,6 +15,7 @@ const HomePage = lazy(() => import("../pages/public/HomePage"));
 
 // Páginas privadas
 const ProductsPage = lazy(() => import("../pages/private/ProductsPage"));
+const SearchPage = lazy(() => import("../pages/private/SearchPage"));
 const CartPage = lazy(() => import("../pages/private/CartPage"));
 
 // Página privada (Solo Admin)
@@ -45,6 +46,7 @@ function AppRouter() {
                         </UserRoute>
                     }
                 >
+                    <Route path="/search" element={<SearchPage />} />
                     <Route path="/products" element={<ProductsPage />} />
                     <Route path="/cart" element={<CartPage />} />
 

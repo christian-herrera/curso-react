@@ -66,10 +66,49 @@ class ProductsModel {
                 "products_per_page" => API_PRODUCTS_PER_PAGE
             ];
 
-            Debug::log("Productos leídos con éxito de la base de datos.");
+            Debug::log("Lectura de productos realizada con éxito. Página consultada: $page.");
             return ["result" => true, "data" => $resp];
         } catch (PDOException $e) {
-            Debug::error("Error al obtener productos: " . $e->getMessage());
+            Debug::error("Error al leer la página $page de la tabla productos: " . $e->getMessage());
+            return ["result" => false, "message" => "Error al leer de la base de datos"];
+        }
+    }
+
+
+
+    /**
+     * ### Obtiene el resultado de una búsqueda de productos
+     * Devuelve un array con los productos que coinciden con el texto de búsqueda
+     * 
+     * @param int $limit Cantidad máxima de productos a obtener.
+     * @return array retorna un array con los campos:
+     * - `result` es true si se obtuvo con éxito, false en caso contrario. 
+     * - `data` contiene los productos si `result` es true.
+     * - `message` contiene el mensaje de error si `result` es false.
+     */
+    public static function searchProducts(string $text): array {
+        try {
+            $db = self::init();
+
+            // Obtengo la página consultada
+            $stmt = $db->prepare("
+                SELECT 
+                    id, title, subtitle, description, price, 
+                    COALESCE(:uri || image, '') AS image
+                FROM products
+                WHERE 
+                    (title LIKE :text OR subtitle LIKE :text OR description LIKE :text)
+                ORDER BY id DESC
+            ");
+            $stmt->bindValue(':text', '%' . $text . '%', PDO::PARAM_STR);
+            $stmt->bindValue(':uri', URI_IMAGES, PDO::PARAM_STR);
+            $stmt->execute();
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            Debug::log("Se ha realizado una búsqueda de productos con el texto: '$text'");
+            return ["result" => true, "data" => $products];
+        } catch (PDOException $e) {
+            Debug::error("Error al realizar la búsqueda de '$text': " . $e->getMessage());
             return ["result" => false, "message" => "Error al leer de la base de datos"];
         }
     }
@@ -129,10 +168,10 @@ class ProductsModel {
                 return ["result" => false, "message" => "Producto no encontrado"];
             }
 
-            Debug::log("La imagen se leyó con éxito de la base de datos.");
+            Debug::log("La imagen del producto con ID $id se leyó con éxito de la base de datos.");
             return ["result" => true, "data" => $img];
         } catch (PDOException $e) {
-            Debug::error("Error al obtener la imagen del producto: " . $e->getMessage());
+            Debug::error("Error al obtener la imagen del producto con ID $id: " . $e->getMessage());
             return ["result" => false, "message" => "Error al leer de la base de datos"];
         }
     }
@@ -200,10 +239,10 @@ class ProductsModel {
                 return ["result" => false, "message" => "Error, el producto puede que ya exista"];
             }
 
-            Debug::log("Producto agregado con éxito a la base de datos.");
+            Debug::log("Producto '$title' agregado con éxito a la base de datos.");
             return ["result" => true];
         } catch (PDOException $e) {
-            Debug::error("Error al agregar producto: " . $e->getMessage());
+            Debug::error("Error al agregar producto '$title': " . $e->getMessage());
             return ["result" => false, "message" => "Error al agregar el producto a la base de datos"];
         }
     }

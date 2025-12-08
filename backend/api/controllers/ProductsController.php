@@ -34,6 +34,36 @@ class ProductsController {
 
 
 
+
+    /**
+     * ### Devuelve el resultado de una busqueda
+     * Se toma el campo `text` del JSON recibido y se busca en la base de datos
+     * usando LIKE en los campos title, subtitle y description.
+     */
+    public static function searchProducts(): void {
+        // Recibo y valido el JSON
+        $in = json_decode(file_get_contents('php://input'), true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            Responder::send(ResultCode::INVALID_JSON, "Error leyendo el JSON recibido!");
+            return;
+        }
+        $text = isset($in['query']) ? $in['query'] : '';  // default empty string
+
+        // Leo de la BD
+        require_once __DIR__ . '/../models/ProductsModel.php';
+        $result = ProductsModel::searchProducts($text);
+
+        if (!$result["result"]) {
+            Responder::send(ResultCode::DB_QUERY_ERROR, "Error al leer de la tabla 'productos'!");
+            return;
+        }
+        Responder::send(ResultCode::DB_QUERY_SUCCESS, "Lectura correcta", $result["data"]);
+    }
+
+
+
+
+
     /**
      * ### Elimina un producto de la base de datos
      * El controlador se encarga de recibir el ID del producto a eliminar, obtener

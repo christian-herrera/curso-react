@@ -1,4 +1,12 @@
+// Utilidades
 import { showTextareaReadOnly, showImage } from "../../utils/utilsAlert";
+
+
+// Imagenes
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ArticleIcon from '@mui/icons-material/Article';
+
 
 // ---------------------------------------------------------------------
 // --> Component: TableOfProducts.jsx
@@ -25,15 +33,9 @@ export default function TableOfProducts({ productList = [], on_delProduct }) {
                                 <td>{file.title}</td>
                                 <td>{file.subtitle}</td>
                                 <td className="text-center">
-                                    <button className="btn btn-sm btn-info mx-1" title="Ver Descripción" onClick={() => showTextareaReadOnly("Descripción:", file.description)}>
-                                        📄
-                                    </button>
-                                    <button className="btn btn-sm btn-info mx-1" title="Ver Imagen" onClick={() => showImage("Vista Previa", file.image)}>
-                                        🖼️
-                                    </button>
-                                    <button className="btn btn-sm btn-danger mx-1" title="Eliminar" onClick={() => on_delProduct(file.id)}>
-                                        🗑️
-                                    </button>
+                                    <ArticleIcon onClick={() => showTextareaReadOnly("Descripción:", file.description)} style={{ cursor: "pointer" }} className="mx-1" />
+                                    <InsertPhotoIcon onClick={() => showImage("Vista Previa", file.image)} style={{ cursor: "pointer" }} className="mx-1" />
+                                    <DeleteIcon onClick={() => on_delProduct(file.id)} style={{ cursor: "pointer" }} className="mx-1" />
                                 </td>
                             </tr>
                         ))

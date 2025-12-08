@@ -1,5 +1,45 @@
 {
     "cSpell.words": [
         "RENDERIZADO"
+    ],
+
+    "better-comments.tags": [
+        {
+            "tag": "--> Utilidad: ",
+            "color": "#009dffeb",
+            "backgroundColor": "transparent",
+            "strikethrough": false,
+            "underline": true,
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "--> Hook: ",
+            "color": "#ff7b00eb",
+            "backgroundColor": "transparent",
+            "strikethrough": false,
+            "underline": true,
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "--> Handle: ",
+            "color": "#ff7b00eb",
+            "backgroundColor": "transparent",
+            "strikethrough": false,
+            "underline": true,
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "--> RENDERIZADO",
+            "color": "#ffffff",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#00aa25c7",
+            "bold": true,
+            "italic": false
+        },
+
     ]
 }

@@ -8,10 +8,9 @@ import { useCart } from "../../contexts/CartContext";
 import { showNotify, showQuestion } from "../../utils/utilsAlert";
 
 // Imagenes
-import leftIcon from "../../assets/icons/left.svg";
-import rightIcon from "../../assets/icons/right.svg";
-import trashIcon from "../../assets/icons/trash.svg";
-
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import DeleteIcon from '@mui/icons-material/Delete';
 /**
  * ------------------------------------------------------------
  * ==> Carrito.jsx - Página del Carrito de Compras
@@ -88,15 +87,18 @@ export default function CarritoPagePage() {
 
                             {cart.map((item, index) => (
                                 <tr key={index}>
-                                    <td scope="row">{item.title}</td>
+                                    {/* Titulo */}
+                                    <td scope="row" className="w-50">{item.title}</td>
 
-                                    <td className="text-center">$ {(item.price / 100).toFixed(2)}</td>
+                                    {/* Precio */}
+                                    <td className="text-center w-25">$ {(item.price / 100).toFixed(2)}</td>
 
-                                    <td>
+                                    {/*  Acciones */}
+                                    <td className="w-25">
                                         <div className="d-flex justify-content-center align-items-center gap-2">
                                             {/* Botón de Decremento */}
                                             <button className="btn p-0 border-0 bg-transparent" onClick={() => cartDec(item.id)} aria-label={`Restar uno a ${item.title}`}>
-                                                <img src={leftIcon} alt="" />
+                                                <KeyboardArrowLeftIcon />
                                             </button>
                                             <label htmlFor={`quantity-${item.id}`} className="visually-hidden">
                                                 Cantidad de {item.title}
@@ -107,12 +109,12 @@ export default function CarritoPagePage() {
 
                                             {/* Botón de Incremento */}
                                             <button className="btn p-0 border-0 bg-transparent" onClick={() => cartInc(item.id)} aria-label={`Sumar uno a ${item.title}`}>
-                                                <img src={rightIcon} alt="" />
+                                                <KeyboardArrowRightIcon />
                                             </button>
 
                                             {/* Botón de eliminar item */}
                                             <button className="btn p-0 border-0 bg-transparent" onClick={() => cartRemove(item.id)} aria-label={`Eliminar ${item.title} del carrito`}>
-                                                <img src={trashIcon} alt="" />
+                                                <DeleteIcon />
                                             </button>
                                         </div>
                                     </td>
