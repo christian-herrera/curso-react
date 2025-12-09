@@ -1,5 +1,4 @@
-import { Outlet, Navigate, Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
 // Contextos
 import { useAuth } from "../contexts/AuthContext";
@@ -12,6 +11,9 @@ import { showQuestion } from "../utils/utilsAlert";
 import logo_icon from "../assets/logo_reduced.svg";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from "@mui/icons-material/Search";
+
+// JS de Bootstrap
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 
 

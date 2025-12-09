@@ -4,7 +4,7 @@
 <br>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/christian-herrera/curso-react)
-![Static Badge](https://img.shields.io/badge/version-v0.4.0-blue)
+![Static Badge](https://img.shields.io/badge/version-v0.4.1-blue)
 
 ![GitHub License](https://img.shields.io/github/license/christian-herrera/curso-react?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/christian-herrera/curso-react?style=for-the-badge)
