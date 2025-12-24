@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "title": "USB 2.0 a UART TTL",
+        "subtitle": "Interfaces",
+        "description": "Obtiene una interfaz UART TTL con solo conectarlo al puerto USB, soporta Windows 98SE, 2000, XP, Vista, Window7, Mac OS 9, Mac OS X & Linux 2.40.",
+        "image": "http://localhost:5500/public/products/ce0599fb231ad560c18f3de34270747a2e8ae07b4999429ba925e83a4d2719fa.jpg",
+        "price": 567625
+    },
+    {
+        "id": 2,
+        "title": "Transreceptor LoRa RA-02",
+        "subtitle": "Transreceptor",
+        "description": "Transceptor LoRa de bajo consumo para comunicaciones a larga distancia.",
+        "image": "http://localhost:5500/public/products/bbafba23a24a613fd57e4d4452dfc496ed47f2b464e03699fe1744ca1c0d0008.jpg",
+        "price": 1313910
+    },
+    {
+        "id": 3,
+        "title": "Sensor Touch capacitivo TTP223B",
+        "subtitle": "Sensor",
+        "description": "Sensor Touch capacitivo con circuito integrado TTP223B",
+        "image": "http://localhost:5500/public/products/2ee56c65563e163054f319200ec37598a16182d0a5b5536ed82cf057ff6d644c.jpg",
+        "price": 156200
+    },
+    {
+        "id": 4,
+        "title": "Sensor Ultrasonico Ultrasonido Hc-sr04",
+        "subtitle": "Sensor",
+        "description": "El sensor ultrasónico HC-SR04 ofrece un rango de medición de 2cm a los 500cm, con una precisión de aproximadamente 3mm.",
+        "image": "http://localhost:5500/public/products/abd798e7fe368e501643d9619fc30550651edff9e8064b50ce7fe11014975f51.jpg",
+        "price": 220400
+    },
+    {
+        "id": 5,
+        "title": "Sensor de Temperatura DS18B20",
+        "subtitle": "Sensor",
+        "description": "Sensor de temperatura DS18B20 impermeabilizado.",
+        "image": "http://localhost:5500/public/products/36ae5a52d5da397eaf2de9b609f122075af505a06c3fdaffa53a4ea360dd8385.jpg",
+        "price": 211817
+    },
+    {
+        "id": 6,
+        "title": "Sensor de proximidad por infrarrojo",
+        "subtitle": "Sensor",
+        "description": "El sensor de proximidad por infrarrojo es un módulo que permite detectar objetos cercanos sin contacto fí­sico, utilizando tecnologí­a infrarroja.",
+        "image": "http://localhost:5500/public/products/23f52e86050f5899bc48384d3a3a6e7fbed8271abb63a37deaface50e72b5bc8.jpg",
+        "price": 165600
+    },
+    {
+        "id": 7,
+        "title": "Sensor de humedad y temperatura HTU21D",
+        "subtitle": "Sensor",
+        "description": "El sensor de humedad HTU21 es ideal para la detección del medio ambiente y del registro de datos, permite realizar toma de datos directamente con la interfaz deseada",
+        "image": "http://localhost:5500/public/products/b11339fa4804f1bd83992af743d9f99219e5d2369626f070dee837cb234ae3f6.jpg",
+        "price": 332100
+    },
+    {
+        "id": 8,
+        "title": "Sensor de humedad de suelo con conector gravity 3 pines",
+        "subtitle": "Sensor",
+        "description": "El sensor capacitivo de humedad de suelo V2.0 ofrece una medición precisa y duradera sin riesgo de corrosión. Ideal para riego inteligente, agricultura de precisión y proyectos con Arduino, ESP32 o Raspberry Pi.",
+        "image": "http://localhost:5500/public/products/0990ea6f2f80f5b87ec962c1754ca958a77d2397e6fd5cd0c09a105dcc895b63.jpg",
+        "price": 276500
+    },
+    {
+        "id": 9,
+        "title": "Sensor De Humedad Y Temperatura DHT22 Arduino",
+        "subtitle": "Sensor",
+        "description": "El DHT22 es un sensor de temperatura y humedad que se utiliza para medir la temperatura y la humedad relativa del ambiente en el que se encuentra. ",
+        "image": "http://localhost:5500/public/products/a2dbf785dd667299715f3a2d0a38a2f3b36dd3af2136845ac71a88199bf4cdc1.jpg",
+        "price": 411514
+    },
+    {
+        "id": 10,
+        "title": "Sensor de Color, Gestos y RGB GY-9960",
+        "subtitle": "Sensor",
+        "description": "Este es el sensor RGB y gestos, funciona con un pequeño sensor APDS-9960 incorporado que ofrece medición de luz y color ambiental, detección de proximidad y sensación de gestos sin toque.",
+        "image": "http://localhost:5500/public/products/331a621afa88afea63ae4b0a1dfdc468aa547ec7394a7bec4b4e82be595d2046.jpg",
+        "price": 344400
+    },
+    {
+        "id": 11,
+        "title": "Módulo Wifi Esp8266 Esp01",
+        "subtitle": "Modulo WiFi",
+        "description": "Chip altamente integrado, diseñado para aplicaciones donde se requiera conectividad a bajo costo. Ofrece una solución completa y autónoma de redes Wi-Fi, lo que le permite alojar la aplicación o servir como puente entre Internet y un microcontrolador.",
+        "image": "http://localhost:5500/public/products/293f544583080501091f2b2d1f9eaf8ac3cd0e3a45bb9a7361b072c94217be9a.jpg",
+        "price": 184800
+    },
+    {
+        "id": 12,
+        "title": "Módulo Wifi ESP8266 ESP-07 con stak TCP\/IP",
+        "subtitle": "Modulo WiFi",
+        "description": "ESP8266 es un chip altamente integrado diseñado para las necesidades de un nuevo mundo conectado. Ofrece una solución completa y autónoma de las redes Wi-Fi, lo que le permite ya sea anfitrión de la aplicación o para descargar todas las funciones de red Wi-Fi desde otro procesador de aplicaciones.",
+        "image": "http://localhost:5500/public/products/5060bf4d2941c2b5da9ca7e2d0cf549e852740a04642aaa164de89a501acb132.jpg",
+        "price": 368825
+    }
+]
