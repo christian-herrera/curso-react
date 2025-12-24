@@ -54,14 +54,13 @@ export default function AuthProvider({ children }) {
             }
 
             const response = await loginService(username, password);
-
             if (response.code === ApiCodes.AUTH_PASS) {
                 setUserData({ // Establezco la prop userData
                     id: response.data.id,
                     nombre: response.data.name,
                     apellido: response.data.surname,
                     is_admin: response.data.is_admin,
-                    token: response.data.token,
+                    token: 1234567890 // Simulación de token para el funcionamiento sin backend
                 });
                 return { success: true, message: `Bienvenido nuevamente ${response.data.name}...` };
             } else {

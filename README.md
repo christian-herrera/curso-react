@@ -4,7 +4,7 @@
 <br>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/christian-herrera/curso-react)
-![Static Badge](https://img.shields.io/badge/version-v0.4.1-blue)
+![Static Badge](https://img.shields.io/badge/version-v0.4.1--preview-blue)
 
 ![GitHub License](https://img.shields.io/github/license/christian-herrera/curso-react?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/christian-herrera/curso-react?style=for-the-badge)
@@ -35,6 +35,23 @@ Proyecto realizado para el curso que brinda ***Talento Tech*** a traves de la *A
 <br />
 
 ---
+
+<br>
+
+> ⚠️ **DISCLAIMER**
+>
+> Esta rama [close-project](https://github.com/christian-herrera/curso-react/tree/close-project) simplemente impone una **versión modificada del proyecto** en la cual se **eliminó la dependencia del backend**.
+>
+> El objetivo de este cambio es **permitir la publicación pública de la web**, evitando exponer:
+> - mal uso de la app (dado que los usuarios son públicos)
+> - librerar al backedn ya que es una app de aprendizaje.
+>
+> La versión completa se mantiene en la rama [main](https://github.com/christian-herrera/curso-react).
+>  
+> Esta implementación modifica los servicios para consultar archivos JSON públicos en lugar de consultar al backend. Las limintacions impuestas serán sobre la edicion de los mismos dado que esto se sirve en github pages.
+
+
+<br>
 
 # Estructura del Proyecto
 ## Backend

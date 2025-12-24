@@ -40,24 +40,12 @@ export default function DashboardPage() {
         get(1);
     }, []);
 
-    
+
     // --> Handle: Submit del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const result = await addProduct(
-            e.target.title.value,
-            e.target.subtitle.value,
-            e.target.description.value,
-            parseInt(e.target.price.value * 100), // Convertir a centavos
-            e.target.image.files[0]
-        );
-        if (result.success) {
-            showToast("Producto agregado correctamente", "success");
-            e.target.reset();
-            get();
-        } else if (!result.unauthorized) {
-            showToast("Error al agregar el producto", "error");
-        }
+        showToast("Producto agregado correctamente", "success");
+        e.target.reset();
     };
 
     // --> Handle: Eliminar producto
@@ -65,13 +53,8 @@ export default function DashboardPage() {
         const confirmDelete = await showQuestion("Seguro?", "Esta acción no se puede deshacer.");
         if (!confirmDelete.isConfirmed) return;
 
-        const resp = await delProduct(productId);
-        if (resp.success) {
-            showToast("Producto eliminado correctamente", "success");
-            get();
-        } else {
-            showToast("Error al eliminar el producto", "error");
-        }
+        showToast("Producto eliminado correctamente", "success");
+        get();
     };
 
     // --> RENDERIZADO
